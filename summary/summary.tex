@@ -1,0 +1,149 @@
+\documentclass[final]{elsarticle}
+\usepackage{natbib}
+\usepackage{bibentry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% Packages for table
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{ulem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage[mathscr]{eucal}
+
+%\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+
+\usepackage{ulem}
+\usepackage{color}
+\newcommand{\rd}{\textcolor{red}}
+\newcommand{\gr}{\textcolor{Green}}
+\newcommand{\og}{\textcolor{Orange}}
+\newcommand{\ce}{\textcolor{Cerulean}}
+\newcommand{\tb}{\textcolor{blue}}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}{Proposition}
+\newdefinition{rmk}{Remark}
+\newdefinition{defn}{Definition}
+\newproof{pf}{Proof}
+\newproof{pot}{Proof of Theorem \ref{thm2}}
+
+\hypersetup{
+colorlinks=true,
+allcolors=.
+}
+
+\title{\textbf{\large{CSE 847 (Spring 2022): Machine Learning --- Project \\ Paper Study Summary}}}
+\author{Wei-Chien Liao (\href{mailto:liaowei2@msu.edu}{liaowei2@msu.edu})}
+\date{}
+
+\begin{document}
+\bibliographystyle{unsrt}
+\nobibliography{msu-cse847-project}
+%\maketitle
+\begin{frontmatter}
+\begin{abstract}
+    This paper is a summary of basic concepts of tensors, Tucker decomposition and higher order singular value decomposition (HOSVD), and variants
+    of randomized algorithms for computing these decompositions.
+\end{abstract}
+\end{frontmatter}
+\section{Notation and Preliminaries}
+\noindent The contents in this section are mainly based on \cite{Kolda2009}.
+\begin{defn}
+    The \textbf{order} of a tensor is the number of dimensions, also called \textbf{ways} or \textbf{modes}.
+\end{defn}
+In this paper,
+\begin{itemize}
+    \item \textbf{vectors} (tensors of order $1$) are denoeted by boldface lowercase letters, e.g. $\mathbf{a}$.
+    \item \textbf{matrices} (tensors of order $2$) are denoeted by boldface capital letters, e.g. $\mathbf{A}$.
+    \item \textbf{tensors} (order $\geq 3$) are denoeted by boldface Euler script letters, e.g. $\boldsymbol{\mathscr{X}}$.
+    \item the $i$-th entry of a vector $\mathbf{a}$ is denoeted by $a_i$.
+    \item the $(i,j)$-th element of a matrix $\mathbf{A}$ is denoeted by $A_{ij}$.
+    \item the $(i,j,k)$-th element of a third-order tensor $\boldsymbol{\mathscr{X}}$ is denoeted by $x_{ijk}$.
+    \item a colon ``$:$" is used to indicate all elements of a mode. e.g. for a matrix $\mathbf{A}$,
+    \begin{itemize}
+        \item $\mathbf{a}_{i:} = i$-th row of $\mathbf{A}$.
+        \item $\mathbf{a}_{:j} = j$-th column of $\mathbf{A}$.
+    \end{itemize}
+\end{itemize}
+\begin{defn}
+    A \textbf{fiber} is defined by fixing every index but one.
+\end{defn}
+For a third-order tensor $\boldsymbol{\mathscr{X}}$,
+\begin{itemize}
+    \item $\mathbf{x}_{:jk}=$ \textbf{column fibers} or \textbf{mode-1 fibers}  of $\boldsymbol{\mathscr{X}}$.
+    \item $\mathbf{x}_{i:k}=$ \textbf{row fibers} or \textbf{mode-2 fibers}  of $\boldsymbol{\mathscr{X}}$.
+    \item $\mathbf{x}_{ij:}=$ \textbf{tube fibers} or \textbf{mode-3 fibers}  of $\boldsymbol{\mathscr{X}}$.
+\end{itemize}
+\begin{defn}
+    \textbf{Slices} are two-dimensional sections of a tensor defined by fixing all but two indices.
+\end{defn}
+For a third-order tensor $\boldsymbol{\mathscr{X}}$,
+\begin{itemize}
+    \item $\mathbf{X}_{i::}=$ \textbf{horizontal slices} of $\boldsymbol{\mathscr{X}}$.
+    \item $\mathbf{X}_{:j:}=$ \textbf{lateral slices} of $\boldsymbol{\mathscr{X}}$.
+    \item $\mathbf{X}_{::k}=$ \textbf{frontal slices} of $\boldsymbol{\mathscr{X}}$.
+\end{itemize}
+\begin{defn}[Norm of a Tensor]
+    The \textbf{norm} of a tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I_1\times I_2\times\cdots\times I_N}$,
+    denoeted by $||\boldsymbol{\mathscr{X}}||$, is defined as
+    \begin{equation}
+        ||\boldsymbol{\mathscr{X}}||=\sqrt{\sum_{i_1=1}^{I_1}\sum_{i_2=1}^{I_2}\cdots\sum_{i_N=1}^{I_N}x_{i_1i_2\cdots i_N}^2}.
+    \end{equation}
+\end{defn}
+\begin{defn}[Inner Product of Tensors]
+    The \textbf{inner product} of two same-sized tensors\\
+    $\boldsymbol{\mathscr{X}},\boldsymbol{\mathscr{Y}}\in\mathbb{R}^{I_1\times I_2\times\cdots\times I_N}$,
+    denoeted by $\langle\boldsymbol{\mathscr{X}},\boldsymbol{\mathscr{Y}}\rangle$, is defined as
+    \begin{equation}
+        \langle\boldsymbol{\mathscr{X}},\boldsymbol{\mathscr{Y}}\rangle=\sqrt{\sum_{i_1=1}^{I_1}\sum_{i_2=1}^{I_2}\cdots\sum_{i_N=1}^{I_N}x_{i_1i_2\cdots i_N}y_{i_1i_2\cdots i_N}}.
+    \end{equation}
+\end{defn}
+Thus, by the definition of norm and inner product,
+$\langle\boldsymbol{\mathscr{X}},\boldsymbol{\mathscr{X}}\rangle=||\boldsymbol{\mathscr{X}}||^2$.
+\section{Tucker Decomposition and HOSVD}
+\section{Randomized Algorithms}
+\noindent This section summarizes some randomized algorithm for computing HOSVD discussed in \cite{9350569}.
+\begin{enumerate}
+    \item \textbf{Project Title:}\\
+    A Comparison of Various Randomized Higher Order Singular Value Decomposition (HOSVD) Algorithms
+    \item \textbf{Team Members:} Wei-Chien Liao, Shihab Shahriar Khan
+    \item \textbf{Description of the Problem:}\\
+    Many applications in data sciences require processing high-order tensor data. To deal
+    with large tensor data, dimensionality reduction techniques play an important role among many other types of algorithms. However,
+    performing dimension reduction operations like Tucker decomposition and High Order Singular Value Decomposition (HOSVD)
+    with deterministic algorithms are not efficient for handling large tensor data. This inefficiency can be
+    handled by randomized algorithms. This type of algorithms accelerate classical decompostions by reducing computational complexity
+    of deterministic methods and communications among different level of memory hierarchy. This project aims to study, implement and compare
+    many variants of randomized algorithms, and test them with different datasets from applications such as handwritten digit classification, computer vision or signal processing 
+    to evaluate their performances.
+    \item \textbf{Preliminary Plan (Milestones):}
+    \begin{enumerate}
+        \item Test Tensor Toolbox for MATLAB
+        \item Study the paper \cite{9350569} in the paper list.
+        \item Implement, analyze and compare the algorithms in \cite{9350569}
+    \end{enumerate}
+    \item \textbf{Paper List:}
+    \begin{enumerate}
+        \item[\cite{9350569}] \bibentry{9350569}
+        \item[\cite{ma2021fast}] \bibentry{ma2021fast}
+        \item[\cite{Brett2021}] \bibentry{Brett2021}
+        \item[\cite{Minster2020}] \bibentry{Minster2020}   
+        \item[\cite{Kolda2009}] \bibentry{Kolda2009}
+    \end{enumerate}
+\end{enumerate}
+\end{document}
