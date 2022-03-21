@@ -1,0 +1,77 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{natbib}
+\usepackage{bibentry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% Packages for table
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{ulem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{geometry}
+
+%\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+
+\usepackage{ulem}
+\usepackage{color}
+\newcommand{\rd}{\textcolor{red}}
+\newcommand{\gr}{\textcolor{Green}}
+\newcommand{\og}{\textcolor{Orange}}
+\newcommand{\ce}{\textcolor{Cerulean}}
+\newcommand{\tb}{\textcolor{blue}}
+
+\hypersetup{
+colorlinks=true,
+allcolors=.
+}
+
+\title{\textbf{\large{CSE 847 (Spring 2022): Machine Learning --- Project Proposal}}}
+\author{Wei-Chien Liao (\href{mailto:liaowei2@msu.edu}{liaowei2@msu.edu})}
+\date{}
+
+\begin{document}
+\bibliographystyle{unsrt}
+\nobibliography{msu-cse847-project}
+\maketitle
+\begin{enumerate}
+    \item \textbf{Project Title:}\\
+    A Comparison of Various Randomized Higher Order Singular Value Decomposition (HOSVD) Algorithms
+    \item \textbf{Team Members:} Wei-Chien Liao, Shihab Shahriar Khan
+    \item \textbf{Description of the Problem:}\\
+    Many applications in data sciences require processing high-order tensor data. To deal
+    with large tensor data, dimensionality reduction techniques play an important role among many other types of algorithms. However,
+    performing dimension reduction operations like Tucker decomposition and High Order Singular Value Decomposition (HOSVD)
+    with deterministic algorithms are not efficient for handling large tensor data. This inefficiency can be
+    handled by randomized algorithms. This type of algorithms accelerate classical decompostions by reducing computational complexity
+    of deterministic methods and communications among different level of memory hierarchy. This project aims to study, implement and compare
+    many variants of randomized algorithms, and test them with different datasets from applications such as handwritten digit classification, computer vision or signal processing 
+    to evaluate their performances.
+    \item \textbf{Preliminary Plan (Milestones):}
+    \begin{enumerate}
+        \item Test Tensor Toolbox for MATLAB
+        \item Study the paper \cite{9350569} in the paper list.
+        \item Implement, analyze and compare the algorithms in \cite{9350569}
+    \end{enumerate}
+    \item \textbf{Paper List:}
+    \begin{enumerate}
+        \item[\cite{9350569}] \bibentry{9350569}
+        \item[\cite{ma2021fast}] \bibentry{ma2021fast}
+        \item[\cite{Brett2021}] \bibentry{Brett2021}
+        \item[\cite{Minster2020}] \bibentry{Minster2020}   
+        \item[\cite{Kolda2009}] \bibentry{Kolda2009}
+    \end{enumerate}
+\end{enumerate}
+\end{document}
