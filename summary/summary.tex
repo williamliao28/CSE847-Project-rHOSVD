@@ -115,6 +115,22 @@ For a third-order tensor $\boldsymbol{\mathscr{X}}$,
 \end{defn}
 Thus, by the definition of norm and inner product,
 $\langle\boldsymbol{\mathscr{X}},\boldsymbol{\mathscr{X}}\rangle=||\boldsymbol{\mathscr{X}}||^2$.
+\begin{defn}[Rank-one Tensors]
+    A $N$-way tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I_1\times I_2\times\cdots\times I_N}$ is \textbf{rank one} if it can
+    be written as the outer product of $N$ vectors,
+    \begin{equation}
+        \boldsymbol{\mathscr{X}} = \mathbf{a}^{(1)}\circ\mathbf{a}^{(2)}\circ\cdots\circ\mathbf{a}^{(N)},
+    \end{equation}
+    for some vectors $\mathbf{a}^{(1)},\mathbf{a}^{(2)},\cdots,\mathbf{a}^{(N)}$ and ``$\circ$'' denotes the vector outer product.
+\end{defn}
+\begin{defn}
+    A tensor is called \textbf{cubical} if every mode is the same size. A cubical tensor is called \textbf{supersymmetric}
+    (some literatures call this ``symmetric'') if its elements remain constant under any permutation of the indices.
+\end{defn}
+For a $3$-way tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I\times I\times I}$, it is supersymmetric if
+\[
+    x_{ijk} = x_{ikj} = x_{jik} = x_{jki} = x_{kij} = x_{kji} \quad \forall i,j,k=1,\cdots I.
+\]
 \section{Tucker Decomposition and HOSVD}
 \section{Randomized Algorithms}
 \noindent This section summarizes some randomized algorithm for computing HOSVD discussed in \cite{9350569}.
