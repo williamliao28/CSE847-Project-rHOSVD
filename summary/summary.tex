@@ -52,14 +52,15 @@ allcolors=.
 \date{}
 
 \begin{document}
-\bibliographystyle{unsrt}
-\nobibliography{msu-cse847-project}
 %\maketitle
 \begin{frontmatter}
 \begin{abstract}
     This paper is a summary of basic concepts of tensors, Tucker decomposition and higher order singular value decomposition (HOSVD), and variants
     of randomized algorithms for computing these decompositions.
 \end{abstract}
+\begin{keyword}
+    higher order singular value decomposition (HOSVD)\sep Tucker decomposition\sep randomized HOSVD
+\end{keyword}
 \end{frontmatter}
 \section{Notation and Preliminaries}
 \noindent The contents in this section are mainly based on \cite{Kolda2009}.
@@ -134,32 +135,6 @@ For a $3$-way tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I\times I\times I}$
 \section{Tucker Decomposition and HOSVD}
 \section{Randomized Algorithms}
 \noindent This section summarizes some randomized algorithm for computing HOSVD discussed in \cite{9350569}.
-\begin{enumerate}
-    \item \textbf{Project Title:}\\
-    A Comparison of Various Randomized Higher Order Singular Value Decomposition (HOSVD) Algorithms
-    \item \textbf{Team Members:} Wei-Chien Liao, Shihab Shahriar Khan
-    \item \textbf{Description of the Problem:}\\
-    Many applications in data sciences require processing high-order tensor data. To deal
-    with large tensor data, dimensionality reduction techniques play an important role among many other types of algorithms. However,
-    performing dimension reduction operations like Tucker decomposition and High Order Singular Value Decomposition (HOSVD)
-    with deterministic algorithms are not efficient for handling large tensor data. This inefficiency can be
-    handled by randomized algorithms. This type of algorithms accelerate classical decompostions by reducing computational complexity
-    of deterministic methods and communications among different level of memory hierarchy. This project aims to study, implement and compare
-    many variants of randomized algorithms, and test them with different datasets from applications such as handwritten digit classification, computer vision or signal processing 
-    to evaluate their performances.
-    \item \textbf{Preliminary Plan (Milestones):}
-    \begin{enumerate}
-        \item Test Tensor Toolbox for MATLAB
-        \item Study the paper \cite{9350569} in the paper list.
-        \item Implement, analyze and compare the algorithms in \cite{9350569}
-    \end{enumerate}
-    \item \textbf{Paper List:}
-    \begin{enumerate}
-        \item[\cite{9350569}] \bibentry{9350569}
-        \item[\cite{ma2021fast}] \bibentry{ma2021fast}
-        \item[\cite{Brett2021}] \bibentry{Brett2021}
-        \item[\cite{Minster2020}] \bibentry{Minster2020}   
-        \item[\cite{Kolda2009}] \bibentry{Kolda2009}
-    \end{enumerate}
-\end{enumerate}
+\bibliographystyle{plain}
+\bibliography{msu-cse847-project}
 \end{document}
