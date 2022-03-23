@@ -1,0 +1,100 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{natbib}
+\usepackage{bibentry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% Packages for table
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{ulem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{geometry}
+
+%\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+
+\usepackage{ulem}
+\usepackage{color}
+\newcommand{\rd}{\textcolor{red}}
+\newcommand{\gr}{\textcolor{Green}}
+\newcommand{\og}{\textcolor{Orange}}
+\newcommand{\ce}{\textcolor{Cerulean}}
+\newcommand{\tb}{\textcolor{blue}}
+
+\hypersetup{
+colorlinks=true,
+allcolors=.
+}
+
+\title{\textbf{\large{CSE 847 (Spring 2022): Machine Learning\\ Intermediate Report}}}
+\author{
+    Wei-Chien Liao (\href{mailto:liaowei2@msu.edu}{liaowei2@msu.edu})
+    \and
+    Shihab Shahriar Khan (\href{mailto:khanmd@msu.edu}{khanmd@msu.edu})
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item \textbf{Project Title:}\\
+    A Comparison of Various Randomized Higher Order Singular Value Decomposition (HOSVD) Algorithms
+    \item \textbf{Team Members:} Wei-Chien Liao, Shihab Shahriar Khan
+    \item \textbf{Introduction and Problem Description:}\\
+    Many applications in data sciences require processing high-order tensor data. To deal
+    with large tensor data, dimensionality reduction techniques play an important role among many other types of algorithms. However,
+    performing dimension reduction operations like Tucker decomposition and High Order Singular Value Decomposition (HOSVD)
+    with deterministic algorithms are not efficient for handling large tensor data. This inefficiency can be
+    handled by randomized algorithms. This type of algorithms accelerate classical decompostions by reducing computational complexity
+    of deterministic methods and communications among different level of memory hierarchy. This project aims to study, implement and compare
+    many variants of randomized algorithms, and test them with different datasets from applications such as handwritten digit classification, computer vision or signal processing 
+    to evaluate their performances.
+    \item \textbf{Description of the data used in the project:}
+    \begin{enumerate}
+        \item Synthetic 3rd order tensor, optionally with noise added.
+        \item COIL-100 DATA SET \cite{nene1996columbia}: contains 7200 color images (100 objects under 72 different rotations). 
+        \item NEIL 2 \cite{carlson2010toward}: For experiments on sparse tensor. It's a 3rd order sparse tensor of shape $12092 \times 9184 \times 28818$.
+    \end{enumerate}
+    
+    
+    \item \textbf{What We Have Done So Far:}
+    \begin{enumerate}
+        \item Study the theory and mathematics of two prominent deterministic tensor decomposition algorithms called Tucker decomposition and High Order
+        Singular Value Decomposition (HOSVD).
+        \item Study the papers \cite{9350569} and \cite{Kolda2009} to understand randomized tensor decomposition algorithms, and how they perform compared to their deterministic counterparts along several metrics of interest.
+        \item Explore the Tensor Toolbox for MATLAB.
+        \item Exploration of ``Tensorly" \cite{tensorly} library in Python.
+        \begin{enumerate}
+            \item Implementation of tensor decomposition and reconstruction using lower level functions to gain a better idea of how the library and the algorithms work.
+            \item Using order-3 tensors of image and synthetic data, implemented a preliminary experiment to test the reconstruction performance of 3 algorithms: CP, Tucker and RandomizedCP. The algorithms were evaluated based on Relative Error and Running Time, following the procedure of \cite{9350569}. The qualitative performance on image data was also considered. 
+        \end{enumerate}
+        
+    \end{enumerate}
+    
+    \item \textbf{What Remains to be Done:}
+    \begin{enumerate}
+        \item Implement the randomized algorithms in \cite{9350569}.
+        \item Analyze the algorithms using the datasets listed in
+        the ``Description of the data'' section.
+        \item Propose and evaluate potential ways further speedup can be achieved.
+    \end{enumerate}
+    
+\end{enumerate}
+
+\bibliographystyle{unsrt} % We choose the "plain" reference style
+\bibliography{msu-cse847-project.bib}
+
+\end{document}
