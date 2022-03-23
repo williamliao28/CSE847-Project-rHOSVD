@@ -39,12 +39,15 @@ allcolors=.
 }
 
 \title{\textbf{\large{CSE 847 (Spring 2022): Machine Learning\\ Intermediate Report}}}
-\author{Wei-Chien Liao (\href{mailto:liaowei2@msu.edu}{liaowei2@msu.edu})}
+\author{
+    Wei-Chien Liao (\href{mailto:liaowei2@msu.edu}{liaowei2@msu.edu})
+    \and
+    Shihab Shahriar Khan (\href{mailto:khanmd@msu.edu}{khanmd@msu.edu})
+}
+
 \date{}
 
 \begin{document}
-\bibliographystyle{unsrt}
-\nobibliography{msu-cse847-project}
 \maketitle
 \begin{enumerate}
     \item \textbf{Project Title:}\\
@@ -61,28 +64,41 @@ allcolors=.
     to evaluate their performances.
     \item \textbf{Description of the data used in the project:}
     \begin{enumerate}
-        \item 
-        \item 
-        \item 
+        \item Synthetic 3rd order tensor, optionally with noise added.
+        \item COIL-100 DATA SET \cite{nene1996columbia}: contains 7200 color images (100 objects under 72 different rotations). 
+        \item NEIL 2 \cite{carlson2010toward}: For experiments on sparse tensor. It's a 3rd order sparse tensor of shape $12092 \times 9184 \times 28818$.
     \end{enumerate}
-    \item \textbf{What have done so far:}
+    
+    
+    \item \textbf{What We Have Done So Far:}
     \begin{enumerate}
-        \item Study the papers \cite{9350569} and \cite{Kolda2009}.
-        \item Explore the Tensor Toolbox for MATLAB.
+        \item Study the theory and mathematics of two prominent deterministic tensor decomposition algorithms called Tucker decomposition and High Order
+        Singular Value Decomposition (HOSVD).
+        \item Study the papers \cite{9350569} and \cite{Kolda2009} to understand randomized tensor decomposition algorithms, and how they perform compared to their deterministic counterparts along several metrics of interest.
+        \item Explore the Tensor Toolbox for MATLAB \cite{Brett2021}.
+        \begin{enumerate}
+            \item Test the \texttt{HOSVD} functionality in the Toolbox.
+            \item Implement STHOSVD and HOOI algorithm.
+        \end{enumerate} 
+        \item Exploration of ``Tensorly" \cite{tensorly} library in Python.
+        \begin{enumerate}
+            \item Implementation of tensor decomposition and reconstruction using lower level functions to gain a better idea of how the library and the algorithms work.
+            \item Using order-3 tensors of image and synthetic data, implemented a preliminary experiment to test the reconstruction performance of 3 algorithms: CP, Tucker and RandomizedCP. The algorithms were evaluated based on Relative Error and Running Time, following the procedure of \cite{9350569}. The qualitative performance on image data was also considered. 
+        \end{enumerate}
+        
     \end{enumerate}
-    \item \textbf{What remains to be done:}
+    
+    \item \textbf{What Remains to be Done:}
     \begin{enumerate}
-        \item Implement the randomized algorithms in \cite{9350569} and test them with the datasets listed in
+        \item Implement the randomized algorithms in \cite{9350569}.
+        \item Analyze the algorithms using the datasets listed in
         the ``Description of the data'' section.
-        \item 
+        \item Propose and evaluate potential ways further speedup can be achieved.
     \end{enumerate}
-    \item \textbf{Paper List:}
-    \begin{enumerate}
-        \item[\cite{9350569}] \bibentry{9350569}
-        \item[\cite{Kolda2009}] \bibentry{Kolda2009} 
-        \item[\cite{ma2021fast}] \bibentry{ma2021fast}
-        \item[\cite{Brett2021}] \bibentry{Brett2021}
-        \item[\cite{Minster2020}] \bibentry{Minster2020}
-    \end{enumerate}
+    
 \end{enumerate}
+
+\bibliographystyle{unsrt} % We choose the "plain" reference style
+\bibliography{msu-cse847-project.bib}
+
 \end{document}
