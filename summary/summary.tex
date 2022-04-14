@@ -132,6 +132,20 @@ For a $3$-way tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I\times I\times I}$
 \[
     x_{ijk} = x_{ikj} = x_{jik} = x_{jki} = x_{kij} = x_{kji} \quad \forall i,j,k=1,\cdots I.
 \]
+\begin{defn}[Diagnoal Tensor]
+    A tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I_1\times I_2\times\cdots\times I_N}$ is \textbf{diagonal}
+    if $x_{i_1i_2\cdots i_N}\neq 0$ only if $i_1=i_2=\cdots=i_N$. 
+\end{defn}
+\begin{defn}[Matricization]
+    The process of reordering the elements of an $N$-way array into a matrix is called \textbf{matricization}
+This is also called \textbf{unfolding} or \textbf{flattening}.
+\end{defn}
+The mode-$n$ matricization of a tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I_1\times I_2\times\cdots\times I_N}$
+is denoeted by $\mathbf{X}_{(n)}$ and arranges the mode-$n$ fibers to be the columns of the resulting matrix.
+\begin{rmk}
+    It is also possible to vectorize a tensor. This process is called vectorization.
+\end{rmk}
+\subsection{Tensor Mulitiplication}
 \section{Tucker Decomposition and HOSVD}
 \section{Randomized Algorithms}
 \noindent This section summarizes some randomized algorithm for computing HOSVD discussed in \cite{9350569}.
