@@ -146,6 +146,72 @@ is denoeted by $\mathbf{X}_{(n)}$ and arranges the mode-$n$ fibers to be the col
     It is also possible to vectorize a tensor. This process is called vectorization.
 \end{rmk}
 \subsection{Tensor Mulitiplication}
+\noindent The \textbf{$n$-mode prodcut} of a tensor $\boldsymbol{\mathscr{X}}\in\mathbb{R}^{I_1\times I_2\times\cdots\times I_N}$
+with a matrix $\mathbf{U}\in\mathbb{R}^{J\times I_n}$ is defined as
+\begin{subequations}
+    \begin{align}
+        & \text{eletmenwise: } \quad \left(\boldsymbol{\mathscr{X}}\times_n\mathbf{U}\right)_{i_1\cdots i_{n-1}ji_{n+1}\cdots i_N}
+        =\sum_{i_n=1}^{I_n}x_{i_1i_2\cdots i_N}u_{ji_n} \\
+        & \text{unfold tensors: } \quad \boldsymbol{\mathscr{Y}} = \boldsymbol{\mathscr{X}}\times_n\mathbf{U}\Leftrightarrow
+        \mathbf{Y}_{(n)} = \mathbf{U}\mathbf{X}_{(n)}
+    \end{align}
+\end{subequations}
+The result is a tensor of size $I_1\times\cdots\times I_{n-1}\times J\times I_{n+1}\times\cdots\times I_N$. Each mode-$n$ fiber is multiplied by the matrix $\mathbf{U}$.
+The following are some properties of the $n$-mode prodcut:
+\begin{enumerate}
+    \item[(1)] For distinct modes
+    in a series of multiplications, the order of the multiplication is irrelevant.
+    \begin{equation}
+        \boldsymbol{\mathscr{X}}\times_m\mathbf{A}\times_n\mathbf{B} = \boldsymbol{\mathscr{X}}\times_n\mathbf{B}\times_m\mathbf{A},\quad \text{for } n\neq m.
+    \end{equation}
+    \item[(2)] If the modes are the same
+    \begin{equation}
+        \boldsymbol{\mathscr{X}}\times_n\mathbf{A}\times_n\mathbf{B}=\boldsymbol{\mathscr{X}}\times_n(\mathbf{B}\mathbf{A}).
+    \end{equation} 
+\end{enumerate}
+\subsection{Some Matrix Products}
+\begin{itemize}
+    \item \underline{\textbf{Kronecker Product}}\\[0.3cm]
+    The \textbf{Kronecker product} of two matrices $\mathbf{A}\in\mathbb{R}^{I\times J}$ and $\mathbf{B}\in\mathbb{R}^{K\times L}$,
+    denoeted by $\mathbf{A}\otimes\mathbf{B}$, is defined as
+    \begin{equation}
+        \mathbf{A}\otimes\mathbf{B}=\begin{bmatrix}
+            a_{11}\mathbf{B} & a_{12}\mathbf{B} & \cdots & a_{1J}\mathbf{B} \\
+            a_{21}\mathbf{B} & a_{22}\mathbf{B} & \cdots & a_{2J}\mathbf{B} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{I1}\mathbf{B} & a_{I2}\mathbf{B} & \cdots & a_{IJ}\mathbf{B}
+        \end{bmatrix}
+    \end{equation}
+    \item \underline{\textbf{Khatri-Rao Product}}\\[0.3cm]
+    The \textbf{Khatri-Rao product} of two matrices $\mathbf{A}\in\mathbb{R}^{I\times K}$ and $\mathbf{B}\in\mathbb{R}^{J\times K}$,
+    denoeted by $\mathbf{A}\odot\mathbf{B}$, is defined as
+    \begin{equation}
+        \mathbf{A}\odot\mathbf{B}=\begin{bmatrix}
+            \mathbf{a}_{1}\otimes\mathbf{b}_1 & \mathbf{a}_{2}\otimes\mathbf{b}_2 & \cdots & \mathbf{a}_{K}\otimes\mathbf{b}_K
+        \end{bmatrix}
+    \end{equation}
+    \item \underline{\textbf{Hadamard Product}}\\[0.3cm]
+    The \textbf{Hadamard product} of two matrices $\mathbf{A}, \mathbf{B}\in\mathbb{R}^{I\times J}$,
+    denoeted by $\mathbf{A}*\mathbf{B}$, is defined as
+    \begin{equation}
+        \mathbf{A}*\mathbf{B}=\begin{bmatrix}
+            a_{11}b_{11} & a_{12}b_{12} & \cdots & a_{1J}b_{1J} \\
+            a_{21}b_{21} & a_{22}b_{22} & \cdots & a_{2J}b_{2J} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{I1}b_{I1} & a_{I2}b_{I2} & \cdots & a_{IJ}b_{IJ}
+        \end{bmatrix}
+    \end{equation}
+\end{itemize}
+Some properties of these matrix prodcuts:
+\begin{subequations}
+    \begin{align}
+        (\mathbf{A}\otimes\mathbf{B})(\mathbf{C}\otimes\mathbf{D}) &= \mathbf{A}\mathbf{C}\otimes\mathbf{B}\mathbf{D} \\
+        (\mathbf{A}\otimes\mathbf{B})^{\dagger} &= \mathbf{A}^{\dagger}\otimes\mathbf{B}^{\dagger} \\
+        \mathbf{A}\odot\mathbf{B}\odot\mathbf{C} &= (\mathbf{A}\odot\mathbf{B})\odot\mathbf{C} = \mathbf{A}\odot(\mathbf{B}\otimes\mathbf{C}) \\
+        (\mathbf{A}\odot\mathbf{B})^T(\mathbf{A}\odot\mathbf{B}) &= (\mathbf{A}^T\mathbf{A})*(\mathbf{B}^T\mathbf{B}) \\
+        (\mathbf{A}\odot\mathbf{B})^{\dagger} &= (\mathbf{A}^T\mathbf{A})*(\mathbf{B}^T\mathbf{B})^{\dagger}(\mathbf{A}\odot\mathbf{B})^T
+    \end{align}
+\end{subequations}
 \section{Tucker Decomposition and HOSVD}
 \section{Randomized Algorithms}
 \noindent This section summarizes some randomized algorithm for computing HOSVD discussed in \cite{9350569}.
