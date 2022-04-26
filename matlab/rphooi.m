@@ -28,4 +28,5 @@ while iter < maxiter
         [Q{n},~] = qr(W,0);
     end
     S = ttm(S,Q{N}.',N);
+    iter = iter +1;
 end
