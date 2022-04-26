@@ -1,4 +1,4 @@
-\documentclass[final]{elsarticle}
+\documentclass[preprint]{elsarticle}
 \usepackage{natbib}
 \usepackage{bibentry}
 \usepackage{amsmath}
@@ -45,13 +45,23 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
+\makeatletter
+\def\ps@pprintTitle{%
+ \let\@oddhead\@empty
+ \let\@evenhead\@empty
+ \def\@oddfoot{\centerline{\thepage}}%
+ \let\@evenfoot\@oddfoot}
+\makeatother
+
 \hypersetup{
 colorlinks=true,
 allcolors=.
 }
 
-\title{\textbf{\large{CSE 847 (Spring 2022): Machine Learning --- Project \\ Paper Study Summary}}}
-\author{Wei-Chien Liao (\href{mailto:liaowei2@msu.edu}{liaowei2@msu.edu})}
+\title{\textbf{\large{CSE 847 (Spring 2022): Machine Learning --- Project Report}}}
+\author[1]{Wei-Chien Liao (\href{mailto:liaowei2@msu.edu}{liaowei2@msu.edu})}
+\author[1]{Shihab Shahriar Khan (\href{mailto:khanmd@msu.edu}{khanmd@msu.edu})}
+\address[1]{Computer Science and Engineering, Michigan State University}
 \date{}
 
 \begin{document}
@@ -65,6 +75,8 @@ allcolors=.
     higher order singular value decomposition (HOSVD)\sep Tucker decomposition\sep randomized HOSVD
 \end{keyword}
 \end{frontmatter}
+\section{Introduction}
+
 \section{Notation and Preliminaries}
 \noindent The contents in this section are mainly based on \cite{Kolda2009}.
 \begin{defn}
@@ -378,6 +390,9 @@ following three steps:
 \end{enumerate}
 This kind of techniques can be applied to tensors with some proper extensions. This technique is applied in RP-HOOI
 to solve the underlying least squares problems.
+\section{Numerical Results}
+
+\section{Conclusion}
 \bibliographystyle{plain}
 \bibliography{msu-cse847-project}
 \end{document}
