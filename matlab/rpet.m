@@ -18,7 +18,7 @@ for n = 1:N
     omega{n} = randn(s(n),X_size(n));
     H = ttm(H,omega{n},n);
 end
-% truncate thefactor matrices
+% truncate the factor matrices
 for n = 1:N
     Q{n} = Q{n}(:,1:R(n));
 end

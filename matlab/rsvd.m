@@ -1,4 +1,5 @@
 % Basic Randomized SVD
+% Author: Wei-Chien Liao (liaowei@msu.edu)
 % input:
 %   X: a data matrix of size I x J
 %   R: target rank
@@ -9,7 +10,7 @@
 function [U, S, V] = rsvd(X,R,p,q)
 Q = rsi(X, p+R, q);
 B = Q.'*X;
-[U1, S1, V1] = svd(B);
+[U1, S1, V1] = svds(B,R);
 U1 = Q*U1;
 U = U1(:,1:R);
 S = S1(1:R,1:R);
