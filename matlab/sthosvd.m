@@ -1,4 +1,5 @@
 % Sequentially Truncated HOSVD
+% Author: Wei-Chien Liao (liaowei@msu.edu)
 % input:
 %   X:       a data tensor of size I_1 x I_2 x ... x I_N
 %   epsilon: tolerance

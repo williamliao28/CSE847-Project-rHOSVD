@@ -1,3 +1,4 @@
+% Author: Wei-Chien Liao (liaowei@msu.edu)
 % tests for various randomized HOSVD algorithms
 clear;
 clc;

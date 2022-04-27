@@ -1,4 +1,6 @@
 % Random Projection HOOI
+% Author: Wei-Chien Liao (liaowei@msu.edu)
+% Tested by Shihab Shahriar Khan (khanmd@msu.edu)
 % input:
 %   X: a data tensor of size I_1 x I_2 x ... x I_N
 %   R: a vector containg multilinear ranks of the core tensor, note that

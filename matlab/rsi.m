@@ -1,4 +1,6 @@
 % Randomized Subspace Iteration
+% Author: Wei-Chien Liao (liaowei@msu.edu)
+% Tested by Shihab Shahriar Khan (khanmd@msu.edu)
 % input:
 %   X: a matrix of size I x J
 %   L: an integer indicating the number of vectors to sample

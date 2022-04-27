@@ -6,7 +6,7 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{graphicx}
-\usepackage{subfigure}
+%\usepackage{subfigure}
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage{algorithm}
@@ -81,9 +81,9 @@ allcolors=.
 \section{Introduction}
 As we collect ever-increasing amount of data, the importance of creating sophisticated algorithms to analyze and extract meaningful insights out of them is also growing at same pace. A significant subset of this data is multidimensional in nature. They appear naturally in many fields: deep learning [x], Face Recognition [x], solving multi-dimensional integral equations [x] etc. A common characteristics of these data is that they're huge in size- making it hard to apply many traditional machine learning and data analytics tool on this data directly.
 
-\noident One common technique deal to with this is dimension reduction: where these large multi-dimensional arrays (tensors) are transformed into smaller size while maintaining the hidden structures of the data. But straightforward application of even dimension reduction can be prohibitively expensive. A solution to this problem is randomized algorithms. They operate on subsets of data, and has been shown to be quite effective in several application areas [x,x,x].
+\noindent One common technique deal to with this is dimension reduction: where these large multi-dimensional arrays (tensors) are transformed into smaller size while maintaining the hidden structures of the data. But straightforward application of even dimension reduction can be prohibitively expensive. A solution to this problem is randomized algorithms. They operate on subsets of data, and has been shown to be quite effective in several application areas [x,x,x].
 
-\noident In this paper, we looked into several randomized algorithms for tensor decomposition. They are:
+\noindent In this paper, we looked into several randomized algorithms for tensor decomposition. They are:
 
 \begin{itemize}
     \item Random Projection HOSVD (RP-HOSVD)

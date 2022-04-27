@@ -1,5 +1,6 @@
 % Basic Randomized SVD
 % Author: Wei-Chien Liao (liaowei@msu.edu)
+% Tested by Shihab Shahriar Khan (khanmd@msu.edu)
 % input:
 %   X: a data matrix of size I x J
 %   R: target rank
